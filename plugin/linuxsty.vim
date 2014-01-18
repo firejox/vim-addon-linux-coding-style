@@ -18,7 +18,7 @@ function! SetLinuxFormatting()
 
     autocmd FileType c,cpp call s:LinuxFormatting()
     autocmd FileType c,cpp call s:LinuxKeywords()
-    autocmd FileType c,cpp call s:LinuxHighlighting()
+    "autocmd FileType c,cpp call s:LinuxHighlighting()
     autocmd FileType diff,kconfig setlocal tabstop=8
 
     filetype detect
