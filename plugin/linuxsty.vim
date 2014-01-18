@@ -12,16 +12,19 @@ if exists("g:loaded_linuxsty")
 endif
 let g:loaded_linuxsty = 1
 
-set wildignore+=*.ko,*.mod.c,*.order,modules.builtin
 
-augroup linuxsty
+function! SetLinuxFormatting()
     autocmd!
 
     autocmd FileType c,cpp call s:LinuxFormatting()
     autocmd FileType c,cpp call s:LinuxKeywords()
     autocmd FileType c,cpp call s:LinuxHighlighting()
     autocmd FileType diff,kconfig setlocal tabstop=8
-augroup END
+
+    filetype detect
+endfunc
+
+command! SetLinuxFormatting call SetLinuxFormatting()
 
 function s:LinuxFormatting()
     setlocal tabstop=8
@@ -33,6 +36,8 @@ function s:LinuxFormatting()
     setlocal cindent
     setlocal formatoptions=tcqlron
     setlocal cinoptions=:0,l1,t0,g0
+
+    setlocal wildignore+=*.ko,*.mod.c,*.order,modules.builtin
 endfunction
 
 function s:LinuxKeywords()
