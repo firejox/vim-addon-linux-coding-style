@@ -12,16 +12,19 @@ if exists("g:loaded_linuxsty")
 endif
 let g:loaded_linuxsty = 1
 
-
 function! SetLinuxFormatting()
-    autocmd!
+    if !exists('#LinuxFormatting')
+        augroup LinuxFormatting
+          autocmd!
 
-    autocmd FileType c,cpp call s:LinuxFormatting()
-    autocmd FileType c,cpp call s:LinuxKeywords()
-    "autocmd FileType c,cpp call s:LinuxHighlighting()
-    autocmd FileType diff,kconfig setlocal tabstop=8
+          autocmd FileType c,cpp call s:LinuxFormatting()
+          autocmd FileType c,cpp call s:LinuxKeywords()
+          "autocmd FileType c,cpp call s:LinuxHighlighting()
+          autocmd FileType diff,kconfig setlocal tabstop=8
 
-    filetype detect
+          filetype detect
+      augroup END
+  endif
 endfunc
 
 command! SetLinuxFormatting call SetLinuxFormatting()
